@@ -1,7 +1,24 @@
 /* Import Google Fonts terlebih dahulu */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap");
 
-/* Kemudian import Tailwind CSS */
-@import "tailwindcss";
+/* Tailwind CSS directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Custom styles akan ditambahkan oleh Tailwind secara otomatis */
+/* Custom styles */
+@layer base {
+    body {
+        font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    }
+}
+
+@layer utilities {
+    .font-poppins {
+        font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .font-montserrat {
+        font-family: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+    }
+}

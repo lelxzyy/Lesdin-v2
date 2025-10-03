@@ -22,4 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware('auth')->get('/mitra', function () {
+    return view('mitra.index');
+})->name('mitra');
+
 require __DIR__.'/auth.php';
