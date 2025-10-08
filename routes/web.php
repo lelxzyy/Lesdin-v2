@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BeritaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,8 +23,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth')->get('/mitra', function () {
-    return view('mitra.index');
-})->name('mitra');
+Route::middleware('auth')->get('/mitra', [BeritaController::class, 'index'])->name('mitra');
+
+// Route::middleware('auth')->get('/admin', function () {
+//     return view('admin.index');
+// })->name('admin');
+
+Route::get('/admin', function () {
+    return view('admin.index'); // file utama
+})->name('dashboard');
+Route::get('/admin/siswa', function () {
+    return view('admin.siswa'); // file utama
+})->name('siswa');
+Route::get('/admin/perusahaan', function () {
+    return view('admin.perusahaan'); // file utama
+})->name('perusahaan');
+
 
 require __DIR__.'/auth.php';
