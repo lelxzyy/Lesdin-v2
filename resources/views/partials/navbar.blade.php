@@ -7,9 +7,23 @@
 
     {{-- Desktop Menu --}}
     <ul class="items-center hidden md:flex space-x-8 text-sm font-medium text-[#3C5148]">
-        <li><a href="{{ url('/') }}" class="hover:text-[#678E4D] transition-colors">Beranda</a></li>
-        <li><a href="{{ url('/mitra') }}" class="hover:text-[#678E4D] transition-colors">Mitra</a></li>
-        <li><a href="#footer" class="hover:text-[#678E4D] transition-colors">Kontak</a></li>
+        <li>
+            <a href="{{ url('/') }}" class="hover:text-[#678E4D] transition-colors relative {{ request()->is('/') ? 'text-[#678E4D]' : '' }}">
+                Beranda
+                @if(request()->is('/'))
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#678E4D] rounded-full"></span>
+                @endif
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('/mitra') }}" class="hover:text-[#678E4D] transition-colors relative {{ request()->is('mitra*') ? 'text-[#678E4D]' : '' }}">
+                Mitra
+                @if(request()->is('mitra*'))
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#678E4D] rounded-full"></span>
+                @endif
+            </a>
+        </li>
+        <li><a href="" class="hover:text-[#678E4D] transition-colors">Daftar PKL</a></li>
 
         @auth
             @if (request()->routeIs('profile'))
@@ -64,9 +78,23 @@
 {{-- Mobile Menu --}}
 <div id="mobile-menu" class="hidden fixed top-24 left-1/2 w-[95vw] max-w-sm bg-white rounded-2xl shadow-2xl z-50 md:hidden -translate-x-1/2">
     <ul class="flex flex-col py-6 px-6 space-y-2 text-[#3C5148] pb-8">
-        <li><a href="{{ url('/') }}" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg">Beranda</a></li>
-        <li><a href="{{ url('/mitra') }}" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg">Mitra</a></li>
-        <li><a href="#footer" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg">Kontak</a></li>
+        <li>
+            <a href="{{ url('/') }}" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg relative {{ request()->is('/') ? 'text-[#678E4D] bg-gray-50' : '' }}">
+                Beranda
+                @if(request()->is('/'))
+                    <span class="absolute bottom-2 left-4 right-4 h-0.5 bg-[#678E4D] rounded-full"></span>
+                @endif
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('/mitra') }}" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg relative {{ request()->is('mitra*') ? 'text-[#678E4D] bg-gray-50' : '' }}">
+                Mitra
+                @if(request()->is('mitra*'))
+                    <span class="absolute bottom-2 left-4 right-4 h-0.5 bg-[#678E4D] rounded-full"></span>
+                @endif
+            </a>
+        </li>
+        <li><a href="" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg">Daftar PKL</a></li>
 
         @auth
             <li><a href="{{ route('profile') }}" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg">Profile</a></li>
