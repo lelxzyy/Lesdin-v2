@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\MitraController;
 use Illuminate\Support\Facades\Route;
+use Phiki\Phast\Root;
 
 Route::get('/', function () {
     return view('index');
@@ -23,7 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth')->get('/mitra', [BeritaController::class, 'index'])->name('mitra');
+Route::middleware('auth')->get('/mitra', [MitraController::class, 'index'])->name('mitra');
 
 // Route::middleware('auth')->get('/admin', function () {
 //     return view('admin.index');
@@ -39,5 +41,8 @@ Route::get('/admin/perusahaan', function () {
     return view('admin.perusahaan'); // file utama
 })->name('perusahaan');
 
+Route::get('/daftar-pkl', function () {
+    return view('daftar-pkl.index'); // file utama
+})->name('daftar-pkl');
 
 require __DIR__.'/auth.php';

@@ -1,5 +1,5 @@
 {{-- resources/views/layouts/navbar.blade.php --}}
-<nav class="font-poppins fixed top-6 left-1/2 -translate-x-1/2 bg-white rounded-full shadow-lg px-8 py-3 flex justify-between items-center w-[95%] md:w-[85%] z-50">
+<nav class="font-poppins fixed top-6 left-1/2 -translate-x-1/2 bg-white rounded-full shadow-xl px-8 py-3 flex justify-between items-center w-[95%] md:w-[85%] z-50">
     {{-- Logo --}}
     <div class="flex items-center space-x-3">
         <img src="{{ asset('images/logo-sekolah.png') }}" alt="Logo Sekolah" class="h-12 object-contain">
@@ -23,7 +23,14 @@
                 @endif
             </a>
         </li>
-        <li><a href="" class="hover:text-[#678E4D] transition-colors">Daftar PKL</a></li>
+        <li>
+            <a href="{{ url('/daftar-pkl') }}" class="hover:text-[#678E4D] transition-colors relative {{ request()->is('daftar-pkl*') ? 'text-[#678E4D]' : '' }}">
+            Daftar PKL
+            @if(request()->is('daftar-pkl*'))
+                <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#678E4D] rounded-full"></span>
+            @endif
+            </a>
+        </li>
 
         @auth
             @if (request()->routeIs('profile'))

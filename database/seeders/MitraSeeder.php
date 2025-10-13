@@ -21,6 +21,7 @@ class MitraSeeder extends Seeder
                 'email' => 'info@teknusantara.com',
                 'alamat' => 'Jl. Gatot Subroto No. 123, Jakarta Selatan',
                 'kuota' => 10,
+                'jurusan_id' => 1,
             ],
             [
                 'name' => 'CV. Digital Solutions',
@@ -29,6 +30,7 @@ class MitraSeeder extends Seeder
                 'email' => 'contact@digitalsolutions.co.id',
                 'alamat' => 'Jl. Sudirman No. 456, Jakarta Pusat',
                 'kuota' => 8,
+                'jurusan_id' => 2,
             ],
             [
                 'name' => 'PT. Media Kreatif Indonesia',
@@ -37,6 +39,7 @@ class MitraSeeder extends Seeder
                 'email' => 'info@mediakreatif.co.id',
                 'alamat' => 'Jl. Thamrin No. 789, Jakarta Pusat',
                 'kuota' => 6,
+                'jurusan_id' => 3,
             ],
             [
                 'name' => 'Bengkel Otomotif Maju Jaya',
@@ -45,6 +48,7 @@ class MitraSeeder extends Seeder
                 'email' => 'majujaya@gmail.com',
                 'alamat' => 'Jl. Raya Bekasi No. 321, Bekasi',
                 'kuota' => 12,
+                'jurusan_id' => 4,
             ],
             [
                 'name' => 'PT. Elektronik Industri Mandiri',
@@ -53,6 +57,7 @@ class MitraSeeder extends Seeder
                 'email' => 'hrd@elektronikmandiri.com',
                 'alamat' => 'Kawasan Industri Pulogadung, Jakarta Timur',
                 'kuota' => 15,
+                'jurusan_id' => 5,
             ],
             [
                 'name' => 'Studio Kreatif Multimedia',
@@ -61,6 +66,7 @@ class MitraSeeder extends Seeder
                 'email' => 'info@studiokreatif.com',
                 'alamat' => 'Jl. Kemang Raya No. 567, Jakarta Selatan',
                 'kuota' => 5,
+                'jurusan_id' => 3,
             ],
         ];
 
@@ -69,3 +75,4 @@ class MitraSeeder extends Seeder
         }
     }
 }
+

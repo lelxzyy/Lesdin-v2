@@ -105,7 +105,7 @@
                     Pengalaman Nyata untuk Masa Depan Karier
                 </h2>
                 <p class="text-[#2D4A32] text-sm leading-relaxed mb-6">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                     Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.
                 </p>
             </div>

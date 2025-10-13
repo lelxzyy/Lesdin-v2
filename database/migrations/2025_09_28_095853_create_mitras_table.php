@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('kontak')->nullable();
             $table->string('email')->nullable();
             $table->text('alamat')->nullable();
+            $table->foreignId('jurusan_id')->constrained('jurusans')->cascadeOnDelete();
             $table->unsignedInteger('kuota')->default(0);
             $table->string('image')->nullable();
             $table->timestamps();

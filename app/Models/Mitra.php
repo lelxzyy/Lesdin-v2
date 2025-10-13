@@ -16,8 +16,15 @@ class Mitra extends Model
         'email',
         'alamat',
         'kuota',
+        'jurusan_id',
         'image',
     ];
+
+    // Relasi ke Jurusan
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class);
+    }
 
     // Relasi ke Registrasi
     public function registrations()
