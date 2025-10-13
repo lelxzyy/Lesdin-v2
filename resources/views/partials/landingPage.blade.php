@@ -6,7 +6,7 @@
         <div class="absolute inset-0 bg-black/50"></div>
 
         <div data-aos="fade-up" data-aos-duration="1000"
-             class="relative z-10 flex flex-col items-start justify-center h-full text-white max-w-6xl pl-16 md:pl-39">
+             class="relative z-10 flex flex-col items-start justify-center h-full text-white max-w-6xl px-18">
             <a href="{{ url('/mitra') }}"
                class="bg-[#3C5148] hover:bg-[#678E4D] text-sm font-semibold px-6 py-2 rounded-full shadow-md transition mb-6 inline-flex items-center">
                 Info PKL Baca Selengkapnya

@@ -1,14 +1,14 @@
 {{-- resources/views/layouts/navbar.blade.php --}}
-<nav class="font-poppins fixed top-6 left-1/2 -translate-x-1/2 bg-white rounded-full shadow-xl px-8 py-3 flex justify-between items-center w-[95%] md:w-[85%] z-50">
+<nav class="font-poppins fixed top-6 left-0 right-0 mx-auto bg-white rounded-full shadow-xl px-6 sm:px-8 py-3 flex justify-between items-center max-w-[95%] md:max-w-[85%] z-50">
     {{-- Logo --}}
-    <div class="flex items-center space-x-3">
-        <img src="{{ asset('images/logo-sekolah.png') }}" alt="Logo Sekolah" class="h-12 object-contain">
+    <div class="flex items-center space-x-3 flex-shrink-0">
+        <img src="{{ asset('images/logo-sekolah.png') }}" alt="Logo Sekolah" class="h-10 sm:h-12 object-contain">
     </div>
 
     {{-- Desktop Menu --}}
-    <ul class="items-center hidden md:flex space-x-8 text-sm font-medium text-[#3C5148]">
+    <ul class="items-center hidden md:flex space-x-6 lg:space-x-8 text-sm font-medium text-[#3C5148]">
         <li>
-            <a href="{{ url('/') }}" class="hover:text-[#678E4D] transition-colors relative {{ request()->is('/') ? 'text-[#678E4D]' : '' }}">
+            <a href="{{ url('/') }}" class="hover:text-[#678E4D] transition-colors relative whitespace-nowrap {{ request()->is('/') ? 'text-[#678E4D]' : '' }}">
                 Beranda
                 @if(request()->is('/'))
                     <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#678E4D] rounded-full"></span>
@@ -16,7 +16,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('/mitra') }}" class="hover:text-[#678E4D] transition-colors relative {{ request()->is('mitra*') ? 'text-[#678E4D]' : '' }}">
+            <a href="{{ url('/mitra') }}" class="hover:text-[#678E4D] transition-colors relative whitespace-nowrap {{ request()->is('mitra*') ? 'text-[#678E4D]' : '' }}">
                 Mitra
                 @if(request()->is('mitra*'))
                     <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#678E4D] rounded-full"></span>
@@ -24,7 +24,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('/daftar-pkl') }}" class="hover:text-[#678E4D] transition-colors relative {{ request()->is('daftar-pkl*') ? 'text-[#678E4D]' : '' }}">
+            <a href="{{ url('/daftar-pkl') }}" class="hover:text-[#678E4D] transition-colors relative whitespace-nowrap {{ request()->is('daftar-pkl*') ? 'text-[#678E4D]' : '' }}">
             Daftar PKL
             @if(request()->is('daftar-pkl*'))
                 <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#678E4D] rounded-full"></span>
@@ -37,7 +37,7 @@
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="px-5 py-2 bg-[#3C5148] text-white rounded-full hover:bg-[#678E4D] transition-colors">
+                        <button type="submit" class="px-4 lg:px-5 py-2 bg-[#3C5148] text-white rounded-full hover:bg-[#678E4D] transition-colors whitespace-nowrap">
                             Logout
                         </button>
                     </form>
@@ -45,7 +45,7 @@
             @else
                 <li>
                     <a href="{{ route('profile') }}" class="hover:text-[#1B2727] text-[#3C5148]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-user text-xl inline-block align-middle" width="1em" height="1em" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-user inline-block align-middle" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                             <circle cx="12" cy="7" r="4"/>
                         </svg>
@@ -54,7 +54,7 @@
             @endif
         @else
             <li>
-                <a href="{{ route('login') }}" class="px-5 py-2 bg-[#3C5148] text-white rounded-full hover:bg-[#678E4D] transition-colors">
+                <a href="{{ route('login') }}" class="px-4 lg:px-5 py-2 bg-[#3C5148] text-white rounded-full hover:bg-[#678E4D] transition-colors whitespace-nowrap">
                     Login
                 </a>
             </li>
@@ -62,7 +62,7 @@
     </ul>
 
     {{-- Mobile Hamburger --}}
-    <button id="menu-toggle" class="md:hidden p-2 text-[#3C5148] hover:text-[#678E4D] transition-colors relative w-8 h-8">
+    <button id="menu-toggle" class="md:hidden p-2 text-[#3C5148] hover:text-[#678E4D] transition-colors relative w-10 h-10 flex-shrink-0 -mr-2">
         {{-- Wrapper biar icon tumpuk pas --}}
         <div class="relative w-7 h-7">
             {{-- Icon Menu --}}
@@ -83,10 +83,10 @@
 </nav>
 
 {{-- Mobile Menu --}}
-<div id="mobile-menu" class="hidden fixed top-24 left-1/2 w-[95vw] max-w-sm bg-white rounded-2xl shadow-2xl z-50 md:hidden -translate-x-1/2">
-    <ul class="flex flex-col py-6 px-6 space-y-2 text-[#3C5148] pb-8">
+<div id="mobile-menu" class="hidden fixed top-24 left-0 right-0 mx-auto max-w-[95%] sm:max-w-md bg-white rounded-2xl shadow-2xl z-50 md:hidden">
+    <ul class="flex flex-col py-6 px-6 space-y-2 text-[#3C5148]">
         <li>
-            <a href="{{ url('/') }}" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg relative {{ request()->is('/') ? 'text-[#678E4D] bg-gray-50' : '' }}">
+            <a href="{{ url('/') }}" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg transition-colors relative {{ request()->is('/') ? 'text-[#678E4D] bg-gray-50' : '' }}">
                 Beranda
                 @if(request()->is('/'))
                     <span class="absolute bottom-2 left-4 right-4 h-0.5 bg-[#678E4D] rounded-full"></span>
@@ -94,17 +94,36 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('/mitra') }}" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg relative {{ request()->is('mitra*') ? 'text-[#678E4D] bg-gray-50' : '' }}">
+            <a href="{{ url('/mitra') }}" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg transition-colors relative {{ request()->is('mitra*') ? 'text-[#678E4D] bg-gray-50' : '' }}">
                 Mitra
                 @if(request()->is('mitra*'))
                     <span class="absolute bottom-2 left-4 right-4 h-0.5 bg-[#678E4D] rounded-full"></span>
                 @endif
             </a>
         </li>
-        <li><a href="" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg">Daftar PKL</a></li>
+        <li>
+            <a href="{{ url('/daftar-pkl') }}" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg transition-colors relative {{ request()->is('daftar-pkl*') ? 'text-[#678E4D] bg-gray-50' : '' }}">
+                Daftar PKL
+                @if(request()->is('daftar-pkl*'))
+                    <span class="absolute bottom-2 left-4 right-4 h-0.5 bg-[#678E4D] rounded-full"></span>
+                @endif
+            </a>
+        </li>
 
         @auth
-            <li><a href="{{ route('profile') }}" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg">Profile</a></li>
+            <li>
+                <a href="{{ route('profile') }}" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg transition-colors">
+                    Profile
+                </a>
+            </li>
+            <li class="pt-2 border-t border-gray-100">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="block w-full text-center px-5 py-3 bg-[#3C5148] text-white rounded-full hover:bg-[#678E4D] transition-colors font-medium">
+                        Logout
+                    </button>
+                </form>
+            </li>
         @else
             <li class="pt-2 border-t border-gray-100">
                 <a href="{{ route('login') }}" class="block w-full text-center px-5 py-3 bg-[#3C5148] text-white rounded-full hover:bg-[#678E4D] transition-colors font-medium">
@@ -139,6 +158,19 @@
 
                 closeIcon.classList.remove('opacity-100', 'rotate-0');
                 closeIcon.classList.add('opacity-0', 'rotate-90');
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('opacity-0', '-rotate-90');
+                    menuIcon.classList.add('opacity-100', 'rotate-0');
+                    closeIcon.classList.remove('opacity-100', 'rotate-0');
+                    closeIcon.classList.add('opacity-0', 'rotate-90');
+                }
             }
         });
 
