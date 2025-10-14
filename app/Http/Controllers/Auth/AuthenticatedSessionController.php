@@ -28,6 +28,14 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $user = $request->user();
+
+        // Jika admin, arahkan ke dashboard admin (/admin) atau ke URL intended kalau sebelumnya diarahkan ke /admin
+        if ($user && ($user->role === 'admin' || $user->is_admin ?? false)) {
+            return redirect()->intended(route('dashboard'));
+        }
+
+        // Non-admin: kembali ke intended atau fallback ke profile.index
         return redirect()->intended(route('profile.index'));
     }
 
@@ -39,9 +47,8 @@ class AuthenticatedSessionController extends Controller
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('index'); // atau redirect('/')
     }
 }
