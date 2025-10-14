@@ -118,7 +118,7 @@
             <div class="space-y-4 sm:space-y-6">
                 @foreach($mitras as $mitra)
                     {{-- Desktop/Tablet Layout --}}
-                    <div class="company-card hidden sm:flex items-center w-full justify-center mx-auto" data-category="{{ $mitra->jurusan->kode_jurusan ?? 'all' }}">
+                    <div class="company-card relative hidden sm:flex items-center w-full justify-center mx-auto" data-category="{{ $mitra->jurusan->kode_jurusan ?? 'all' }}">
                         {{-- Lingkaran logo --}}
                         <div class="bg-white rounded-full shadow-xl w-32 h-32 md:w-40 md:h-40 lg:w-[200px] lg:h-[200px] flex items-center justify-center z-10 absolute left-0">
                             <img src="{{ $mitra->image 
