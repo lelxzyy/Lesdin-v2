@@ -42,6 +42,9 @@
             once: true,    // hanya animasi sekali saat scroll
         });
     </script>
+    <script>
+        lucide.createIcons();
+    </script>
 
     {{-- Tambahan script per-halaman --}}
     @stack('scripts')

@@ -8,7 +8,7 @@
     {{-- Desktop Menu --}}
     <ul class="items-center hidden md:flex space-x-6 lg:space-x-8 text-sm font-medium text-[#3C5148]">
         <li>
-            <a href="{{ url('/') }}" class="hover:text-[#678E4D] transition-colors relative whitespace-nowrap {{ request()->is('/') ? 'text-[#678E4D]' : '' }}">
+            <a href="{{ route('index') }}" class="hover:text-[#678E4D] transition-colors relative whitespace-nowrap {{ request()->is('/') ? 'text-[#678E4D]' : '' }}">
                 Beranda
                 @if(request()->is('/'))
                     <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#678E4D] rounded-full"></span>
@@ -16,7 +16,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('/mitra') }}" class="hover:text-[#678E4D] transition-colors relative whitespace-nowrap {{ request()->is('mitra*') ? 'text-[#678E4D]' : '' }}">
+            <a href="{{ route('mitra.index') }}" class="hover:text-[#678E4D] transition-colors relative whitespace-nowrap {{ request()->is('mitra*') ? 'text-[#678E4D]' : '' }}">
                 Mitra
                 @if(request()->is('mitra*'))
                     <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#678E4D] rounded-full"></span>
@@ -24,7 +24,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('/daftar-pkl') }}" class="hover:text-[#678E4D] transition-colors relative whitespace-nowrap {{ request()->is('daftar-pkl*') ? 'text-[#678E4D]' : '' }}">
+            <a href="{{ route('daftar-pkl.index') }}" class="hover:text-[#678E4D] transition-colors relative whitespace-nowrap {{ request()->is('daftar-pkl*') ? 'text-[#678E4D]' : '' }}">
             Daftar PKL
             @if(request()->is('daftar-pkl*'))
                 <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#678E4D] rounded-full"></span>
@@ -33,7 +33,7 @@
         </li>
 
         @auth
-            @if (request()->routeIs('profile'))
+            @if (request()->routeIs('profile.index'))
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -44,7 +44,7 @@
                 </li>
             @else
                 <li>
-                    <a href="{{ route('profile') }}" class="hover:text-[#1B2727] text-[#3C5148]">
+                    <a href="{{ route('profile.index') }}" class="hover:text-[#1B2727] text-[#3C5148]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-user inline-block align-middle" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                             <circle cx="12" cy="7" r="4"/>
@@ -112,7 +112,7 @@
 
         @auth
             <li>
-                <a href="{{ route('profile') }}" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg transition-colors">
+                <a href="{{ route('profile.index') }}" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg transition-colors">
                     Profile
                 </a>
             </li>

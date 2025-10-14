@@ -28,20 +28,60 @@
         </div>
     </section>
 
-    {{-- Running Logo Section --}}
-    <section data-aos="fade-in" data-aos-duration="800"
-            class="bg-white py-6 relative overflow-hidden">
-        <div class="flex w-max animate-infinite-scroll">
-            @foreach([
-                'citra.png','carglos.png','gama.png',
-                'citra.png','carglos.png','gama.png',
-                'citra.png','carglos.png','gama.png',
-                'citra.png','carglos.png','gama.png'
-            ] as $logo)
-                <img src="{{ asset('images/'.$logo) }}" alt="Logo Mitra" class="mx-8 inline-block w-20 h-10 object-contain">
-            @endforeach
+    {{-- Running Logo Section - Pure CSS Animation --}}
+    <section class="bg-white py-6 overflow-hidden">
+        <div class="logo-slider">
+            <div class="logo-track">
+                @php
+                    $logos = [
+                        'citra.png','multiintegra.png','gama.png', 'mediakreatif.png', 
+                        'nutrifood.png', 'panasonic.webp', 'teknologinusantara.png', 'jogjatechnopark.jpg',
+                    ];
+                @endphp
+                @for($i = 0; $i < 2; $i++)
+                    @foreach($logos as $logo)
+                        <div class="logo-item">
+                            <img src="{{ asset('images/'.$logo) }}" alt="Logo Mitra" 
+                                 class="w-20 h-10 object-contain">
+                        </div>
+                    @endforeach
+                @endfor
+            </div>
         </div>
     </section>
+
+    <style>
+        .logo-slider {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .logo-track {
+            display: flex;
+            width: max-content;
+            animation: scroll 20s linear infinite;
+        }
+        
+        .logo-item {
+            flex-shrink: 0;
+            margin: 0 2rem;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        /* Pause on hover (optional) */
+        .logo-track:hover {
+            animation-play-state: paused;
+        }
+    </style>
 
     {{-- Tentang Sekolah + Visi Misi --}}
     <section class="w-full relative">
@@ -151,16 +191,4 @@
         </div>
     </section>
 </div>
-
-{{-- Animasi Running Logo --}}
-<style>
-@keyframes infinite-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-.animate-infinite-scroll {
-  animation: infinite-scroll 8s linear infinite;
-  display: flex;
-}
-</style>
 @endsection
