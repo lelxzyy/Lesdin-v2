@@ -4,63 +4,71 @@ namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class BeritaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * LIST BERITA (admin)
      */
     public function index()
     {
-        $beritas = Berita::all(); // or your appropriate model and query
-        return view('mitra.index', compact('beritas'));
+        $beritas = Berita::latest()->paginate(6);
+        return view('admin.berita', compact('beritas'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * FORM TAMBAH
      */
     public function create()
     {
-        //
+        return view('admin.berita-create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * SIMPAN BERITA BARU
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'judul' => ['required','string','max:200'],
+            'isi'   => ['required','string'],
+            'image' => ['nullable','image','mimes:jpg,jpeg,png','max:2048'],
+        ]);
+
+        $path = $request->hasFile('image')
+            ? $request->file('image')->store('berita', 'public') // storage/app/public/berita
+            : null;
+
+        Berita::create([
+            'user_id' => Auth::id(),
+            'judul'   => $data['judul'],
+            'isi'     => $data['isi'],
+            'gambar'  => $path,
+        ]);
+
+        return redirect()->route('admin.berita')->with('success', 'Berita berhasil ditambahkan.');
     }
 
     /**
-     * Display the specified resource.
+     * DETAIL (opsional)
      */
-    public function show(string $id)
+    public function show(Berita $berita)
     {
-        //
+        return view('admin.berita-show', compact('berita'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * HAPUS
      */
-    public function edit(string $id)
+    public function destroy(Berita $berita)
     {
-        //
-    }
+        if ($berita->gambar) {
+            Storage::disk('public')->delete($berita->gambar);
+        }
+        $berita->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return back()->with('success', 'Berita berhasil dihapus.');
     }
 }
