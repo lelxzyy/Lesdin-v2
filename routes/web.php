@@ -31,13 +31,19 @@ Route::middleware(['auth', 'admin'])->group(function () {
         return view('admin.index');
     })->name('dashboard');
 
+    // Siswa (sementara masih view statis)
     Route::get('/admin/siswa', function () {
         return view('admin.siswa');
     })->name('admin.siswa');
-  
-  Route::get('/admin/berita', function () {
-        return view('admin.berita');
-    })->name('admin.berita');
+
+    // ===== BERITA (pakai controller) =====
+    Route::get   ('/admin/berita',             [BeritaController::class, 'index'])->name('admin.berita');
+Route::get   ('/admin/berita/create',      [BeritaController::class, 'create'])->name('admin.berita.create'); // <- NEW
+Route::post  ('/admin/berita',             [BeritaController::class, 'store'])->name('admin.berita.store');
+Route::get   ('/admin/berita/{berita}',    [BeritaController::class, 'show'])->name('admin.berita.show');     // opsional
+Route::delete('/admin/berita/{berita}',    [BeritaController::class, 'destroy'])->name('admin.berita.destroy');
+
+    // Perusahaan (sementara masih view statis)
     Route::get('/admin/perusahaan', function () {
         return view('admin.perusahaan');
     })->name('admin.perusahaan');
