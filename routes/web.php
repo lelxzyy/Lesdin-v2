@@ -11,6 +11,23 @@ use App\Http\Controllers\Admin\MitraAdminController;
 // =====================================================
 // ================= HALAMAN PUBLIK ====================
 // =====================================================
+// routes/web.php
+
+Route::middleware('auth')->group(function () {
+    Route::get('/daftar-pkl', [DaftarPklController::class, 'index'])->name('daftar-pkl.index');
+
+    // Tambahkan ini (PUT atau PATCH, sesuaikan Blade kamu)
+    Route::put  ('/daftar-pkl/update-siswa', [DaftarPklController::class, 'updateSiswa'])->name('daftar-pkl.update-siswa');
+    // atau:
+    // Route::patch('/daftar-pkl/update-siswa', [DaftarPklController::class, 'updateSiswa'])->name('daftar-pkl.update-siswa');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/daftar-pkl',   [DaftarPklController::class, 'index'])->name('daftar-pkl.index');
+    Route::get('/daftar-pkl-2', [DaftarPklController::class, 'index'])->name('daftar-pkl.index2'); // opsional
+    Route::get('/daftar-pkl-3', [DaftarPklController::class, 'index'])->name('daftar-pkl.index3'); // opsional
+    Route::get('/daftar-pkl-4', [DaftarPklController::class, 'index'])->name('daftar-pkl.index4'); // opsional
+});
 
 // Halaman utama
 Route::get('/', function () {
