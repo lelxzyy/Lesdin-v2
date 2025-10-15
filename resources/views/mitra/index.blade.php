@@ -120,7 +120,7 @@
                 @foreach($mitras as $mitra)
                     {{-- Desktop/Tablet Layout --}}
                     <div
-                        class="company-card relative hidden sm:flex items-center w-full justify-center mx-auto"
+                        class="company-card relative hidden sm:flex items-center w-full justify-center mx-auto hover:scale-105 transition-transform duration-300"
                         data-category="{{ $mitra->jurusan->kode_jurusan ?? 'all' }}"
                         data-major="{{ Str::lower($mitra->jurusan->kode_jurusan ?? '') }}"
                         data-name="{{ Str::lower($mitra->name) }}"
