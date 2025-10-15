@@ -92,7 +92,7 @@
             <div data-aos="fade-left" class="absolute top-8 right-8 md:right-24 bg-[#3C5148] bg-opacity-95 rounded-xl shadow-lg p-6 max-w-md text-white">
                 <h3 class="text-lg md:text-2xl font-bold mb-2">SMK Negeri 2 Depok Sleman</h3>
                 <p class="text-sm md:text-base leading-relaxed">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.
+                    SMK Negeri 2 Depok Sleman adalah sebuah sekolah menengah kejuruan yang berlokasi di Kabupaten Sleman, Daerah Istimewa Yogyakarta. Sekolah ini, dahulu bernama STM Pembangunan Yogyakarta, diresmikan pada tanggal 29 Juni 1972 oleh Presiden Soeharto. 
                 </p>
             </div>
         </div>
@@ -145,8 +145,7 @@
                     Pengalaman Nyata untuk Masa Depan Karier
                 </h2>
                 <p class="text-[#2D4A32] text-sm leading-relaxed mb-6">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.
+                   Setiap langkah pembelajaran dirancang untuk membawa peserta lebih dekat pada dunia profesional. Melalui proyek nyata, kerja tim, dan kolaborasi dengan industri, proses belajar tidak berhenti di ruang kelas. Pengalaman tersebut menjadi fondasi penting dalam mengasah kemampuan dan kesiapan menghadapi tantangan karier di masa depan.
                 </p>
             </div>
         </div>

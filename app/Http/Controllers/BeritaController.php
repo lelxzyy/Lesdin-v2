@@ -9,8 +9,12 @@ use Illuminate\Support\Facades\Storage;
 
 class BeritaController extends Controller
 {
+    // =========================================================
+    // ===============  ADMIN (protected)  =====================
+    // =========================================================
+
     /**
-     * LIST BERITA (admin)
+     * List berita untuk admin.
      */
     public function index()
     {
@@ -19,7 +23,7 @@ class BeritaController extends Controller
     }
 
     /**
-     * FORM TAMBAH
+     * Form tambah berita.
      */
     public function create()
     {
@@ -27,18 +31,18 @@ class BeritaController extends Controller
     }
 
     /**
-     * SIMPAN BERITA BARU
+     * Simpan berita baru.
      */
     public function store(Request $request)
     {
         $data = $request->validate([
-            'judul' => ['required','string','max:200'],
-            'isi'   => ['required','string'],
-            'image' => ['nullable','image','mimes:jpg,jpeg,png','max:2048'],
+            'judul' => ['required', 'string', 'max:200'],
+            'isi'   => ['required', 'string'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
         ]);
 
         $path = $request->hasFile('image')
-            ? $request->file('image')->store('berita', 'public') // storage/app/public/berita
+            ? $request->file('image')->store('berita', 'public')
             : null;
 
         Berita::create([
@@ -52,7 +56,7 @@ class BeritaController extends Controller
     }
 
     /**
-     * DETAIL (opsional)
+     * Detail berita (admin).
      */
     public function show(Berita $berita)
     {
@@ -60,15 +64,41 @@ class BeritaController extends Controller
     }
 
     /**
-     * HAPUS
+     * Hapus berita.
      */
     public function destroy(Berita $berita)
     {
         if ($berita->gambar) {
             Storage::disk('public')->delete($berita->gambar);
         }
+
         $berita->delete();
 
         return back()->with('success', 'Berita berhasil dihapus.');
+    }
+
+    // =========================================================
+    // =====================  PUBLIK  ==========================
+    // =========================================================
+
+    /**
+     * List berita untuk halaman publik.
+     */
+    public function publicIndex()
+    {
+        $beritas = Berita::latest()->paginate(9);
+        return view('berita.index', compact('beritas'));
+    }
+  /**
+     *  Detail berita publik (“Baca selengkapnya”).
+     */
+    public function publicShow(Berita $berita)
+    {
+        $lainnya = Berita::whereKeyNot($berita->id)
+            ->latest()
+            ->take(6)
+            ->get();
+
+        return view('berita.show', compact('berita', 'lainnya'));
     }
 }
