@@ -33,7 +33,7 @@
 
             {{-- Kartu berita --}}
             <article class="bg-white rounded-2xl shadow p-5 sm:p-8">
-                {{-- Gambar utama --}}
+                  {{-- Gambar utama --}}
                 <img src="{{ $berita->gambar ? asset('storage/' . $berita->gambar) : asset('images/news-placeholder.jpg') }}"
                      alt="{{ $berita->judul }}"
                      class="w-full rounded-lg object-cover max-h-[400px] mb-6">

@@ -92,7 +92,7 @@ Route::get('/index4', function () {
 Route::get('/mitra', [MitraController::class, 'index'])->name('mitra.index');
 Route::get('/mitra/{id}', [MitraController::class, 'show'])->name('mitra.show');
 
-// === AUTH ROUTES ===
+   // === AUTH ROUTES ===
 require __DIR__ . '/auth.php';
 
 // === BERITA (publik) ===
