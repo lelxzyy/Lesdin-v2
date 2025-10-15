@@ -70,32 +70,65 @@
             </div>
         </div>
     </section>
+{{-- =========================
+     BERITA TERKINI (SWIPER)
+========================= --}}
+<section class="w-full px-4 sm:px-6 lg:px-8 mt-8 sm:mt-10 lg:mt-12">
+  <div class="max-w-7xl mx-auto">
+    {{-- Header --}}
+            <h2 class="text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6">Berita Terkini</h2>
+    <div class="swiper mitraSwiper">
+      <div class="swiper-wrapper">
+        @foreach($beritas as $berita)
+          @php
+            $img = $berita->gambar
+                ? (Str::startsWith($berita->gambar, ['http://','https://']) ? $berita->gambar : Storage::url($berita->gambar))
+                : asset('images/news-placeholder.jpg');
+          @endphp
 
-    {{-- Berita Card Carousel --}}
-    <section class="w-full px-4 sm:px-6 lg:px-8 mt-8 sm:mt-10 lg:mt-12">
-        <div class="max-w-7xl mx-auto">
-            <div class="swiper mitraSwiper">
-                <div class="swiper-wrapper">
-                    @foreach($beritas as $berita)
-                        <div class="swiper-slide">
-                            <div class="bg-white rounded-xl shadow-lg overflow-hidden text-gray-800 hover:scale-105 transition-transform duration-300 flex flex-col h-72 sm:h-80">
-                                {{-- Gambar --}}
-                                <div class="relative w-full h-32 sm:h-36 flex-shrink-0">
-                                    <img src="{{ asset('storage/' . $berita->gambar) }}" alt="{{ $berita->judul }}" class="object-cover w-full h-full" />
-                                </div>
+          <div class="swiper-slide">
+            <a href="{{ route('berita.show', $berita->id) }}"
+               class="block bg-white rounded-xl shadow-lg overflow-hidden text-gray-800 hover:scale-105 transition-transform duration-300 h-72 sm:h-80">
+              
+              {{-- Gambar --}}
+              <div class="relative w-full h-32 sm:h-36">
+                <img src="{{ $img }}" alt="{{ $berita->judul }}" class="object-cover w-full h-full" />
+              </div>
 
-                                {{-- Konten --}}
-                                <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
-                                    <h3 class="font-bold text-sm sm:text-base line-clamp-2">{{ $berita->judul }}</h3>
-                                    <p class="text-xs sm:text-sm text-gray-600 mt-2 line-clamp-3">{{ Str::limit($berita->isi, 100) }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </section>
+              {{-- Konten --}}
+              <div class="p-4 sm:p-5 flex flex-col h-[calc(100%-8rem)] sm:h-[calc(100%-9rem)]">
+                {{-- Tanggal --}}
+                <p class="text-xs sm:text-sm font-semibold text-[#678E4D] mb-1">
+                  {{ \Carbon\Carbon::parse($berita->created_at)->translatedFormat('d F Y') }}
+                </p>
+
+                {{-- Judul --}}
+                <h3 class="font-bold text-sm sm:text-base line-clamp-2">{{ $berita->judul }}</h3>
+
+                {{-- Cuplikan isi --}}
+                <p class="text-xs sm:text-sm text-gray-600 mt-2 line-clamp-3">
+                  {{ Str::limit(strip_tags($berita->isi), 120) }}
+                </p>
+
+                {{-- Baca selengkapnya --}}
+                <span class="mt-auto inline-flex items-center gap-1 text-emerald-700 text-sm font-semibold">
+                  Baca selengkapnya 
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+          </div>
+        @endforeach
+      </div>
+
+      {{-- Pagination --}}
+      <div class="swiper-pagination mt-4"></div>
+    </div>
+  </div>
+</section>
+
 
     {{-- List Perusahaan Section --}}
     <section id="company-section" class="w-full px-4 sm:px-6 lg:px-8 mt-10 sm:mt-12 lg:mt-16 mb-10 sm:mb-12 lg:mb-16">

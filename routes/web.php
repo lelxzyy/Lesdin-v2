@@ -94,3 +94,7 @@ Route::get('/mitra/{id}', [MitraController::class, 'show'])->name('mitra.show');
 
 // === AUTH ROUTES ===
 require __DIR__ . '/auth.php';
+
+// === BERITA (publik) ===
+Route::get('/berita', [BeritaController::class, 'publicIndex'])->name('berita.index');   // opsional: list berita publik
+Route::get('/berita/{berita}', [BeritaController::class, 'publicShow'])->name('berita.show'); // detail berita publik
