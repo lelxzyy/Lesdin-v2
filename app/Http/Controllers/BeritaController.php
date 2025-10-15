@@ -89,8 +89,7 @@ class BeritaController extends Controller
         $beritas = Berita::latest()->paginate(9);
         return view('berita.index', compact('beritas'));
     }
-
-     /**
+  /**
      * Detail berita publik (“Baca selengkapnya”).
      */
     public function publicShow(Berita $berita)
