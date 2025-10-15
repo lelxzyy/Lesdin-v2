@@ -90,7 +90,7 @@ class BeritaController extends Controller
         return view('berita.index', compact('beritas'));
     }
   /**
-     * Detail berita publik (“Baca selengkapnya”).
+     *  Detail berita publik (“Baca selengkapnya”).
      */
     public function publicShow(Berita $berita)
     {

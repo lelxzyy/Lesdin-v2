@@ -88,7 +88,7 @@ Route::get('/index4', function () {
 
 });
 
-// === MITRA (untuk user biasa) ===
+ // === MITRA (untuk user biasa) ===
 Route::get('/mitra', [MitraController::class, 'index'])->name('mitra.index');
 Route::get('/mitra/{id}', [MitraController::class, 'show'])->name('mitra.show');
 
