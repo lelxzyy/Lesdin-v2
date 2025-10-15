@@ -8,6 +8,12 @@ use App\Http\Controllers\DaftarPklController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\MitraAdminController;
 
+// Halaman daftar berita publik (opsional)
+Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
+
+// Detail berita publik by slug
+Route::get('/berita/{berita:slug}', [BeritaController::class, 'show'])->name('berita.show');
+
 Route::get('/', function () {
     return view('index');
 })->name('index');
