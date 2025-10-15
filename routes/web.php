@@ -5,6 +5,7 @@ use App\Http\Controllers\MitraController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DaftarPklController;
+use App\Http\Controllers\Admin\SiswaController;
 
 Route::get('/', function () {
     return view('index');
@@ -31,13 +32,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
         return view('admin.index');
     })->name('dashboard');
 
-    // Siswa (sementara masih view statis)
-    Route::get('/admin/siswa', function () {
-        return view('admin.siswa');
-    })->name('admin.siswa');
+    // Siswa
+Route::get('/admin/siswa', [SiswaController::class, 'index'])->name('admin.siswa');
 
     // ===== BERITA (pakai controller) =====
-    Route::get   ('/admin/berita',             [BeritaController::class, 'index'])->name('admin.berita');
+Route::get   ('/admin/berita',             [BeritaController::class, 'index'])->name('admin.berita');
 Route::get   ('/admin/berita/create',      [BeritaController::class, 'create'])->name('admin.berita.create'); // <- NEW
 Route::post  ('/admin/berita',             [BeritaController::class, 'store'])->name('admin.berita.store');
 Route::get   ('/admin/berita/{berita}',    [BeritaController::class, 'show'])->name('admin.berita.show');     // opsional

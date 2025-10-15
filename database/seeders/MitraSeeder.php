@@ -21,7 +21,7 @@ class MitraSeeder extends Seeder
                 'alamat' => 'Jl. Gatot Subroto No. 123, Jakarta Selatan',
                 'kuota' => 10,
                 'jurusan_id' => 1,
-                'gambar' => 'teknologinusantara.png',
+                'image' => 'teknologinusantara.png',
             ],
             [
                 'name' => 'PT. Media Kreatif Indonesia',
@@ -31,7 +31,7 @@ class MitraSeeder extends Seeder
                 'alamat' => 'Jl. Thamrin No. 789, Jakarta Pusat',
                 'kuota' => 6,
                 'jurusan_id' => 3,
-                'gambar' => 'mediakreatif.png',
+                'image' => 'mediakreatif.png',
             ],
             [
                 'name' => 'PT. Panasonic Manufacturing Indonesia',
@@ -41,7 +41,7 @@ class MitraSeeder extends Seeder
                 'alamat' => 'Kawasan Industri Cikarang, Bekasi',
                 'kuota' => 15,
                 'jurusan_id' => 5,
-                'gambar' => 'panasonic.webp',
+                'image' => 'panasonic.webp',
             ],
             [
                 'name' => 'Jogja Techno Park (JTP)',
@@ -51,7 +51,7 @@ class MitraSeeder extends Seeder
                 'alamat' => 'Jl. Wahid Hasyim No. 47, Sleman, Yogyakarta',
                 'kuota' => 5,
                 'jurusan_id' => 1,
-                'gambar' => 'jogjatechnopark.jpg',
+                'image' => 'jogjatechnopark.jpg',
             ],
             [
                 'name' => 'PT. Cargloss Pratama',
@@ -61,7 +61,7 @@ class MitraSeeder extends Seeder
                 'alamat' => 'Jl. Raya Tajur No. 77, Bogor',
                 'kuota' => 10,
                 'jurusan_id' => 4,
-                'gambar' => 'cargloss.png',
+                'image' => 'cargloss.png',
             ],
             [
                 'name' => 'PT. Multi Integra',
@@ -71,7 +71,7 @@ class MitraSeeder extends Seeder
                 'alamat' => 'Jl. Solo Km 10, Sleman, Yogyakarta',
                 'kuota' => 8,
                 'jurusan_id' => 1,
-                'gambar' => 'multiintegra.png',
+                'image' => 'multiintegra.png',
             ],
             [
                 'name' => 'PT. Nutrifood Indonesia',
@@ -81,7 +81,7 @@ class MitraSeeder extends Seeder
                 'alamat' => 'Jl. Rawamangun No. 15, Jakarta Timur',
                 'kuota' => 6,
                 'jurusan_id' => 5,
-                'gambar' => 'nutrifood.png',
+                'image' => 'nutrifood.png',
             ],
         ];
 

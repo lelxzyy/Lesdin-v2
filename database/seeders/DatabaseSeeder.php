@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             GuruPendampingSeeder::class,
             SiswaSeeder::class,
             MitraSeeder::class,
+            JadwalPendaftaranSeeder::class, // Harus sebelum RegistrationSeeder
             RegistrationSeeder::class,
             BeritaSeeder::class,
         ]);

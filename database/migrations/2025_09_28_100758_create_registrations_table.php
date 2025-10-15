@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('siswa_id')->constrained('siswas')->cascadeOnDelete();
             $table->foreignId('guru_pendamping_id')->constrained('guru_pendampings')->cascadeOnDelete();
             $table->foreignId('mitra_id')->constrained('mitras')->cascadeOnDelete();
+            $table->foreignId('jadwal_pendaftaran_id')->constrained('jadwal_pendaftarans')->cascadeOnDelete();
             $table->enum('status', ['proses', 'diterima', 'ditolak'])->default('proses')->index();
             $table->timestamp('tanggal_daftar')->useCurrent();
             $table->timestamps();

@@ -8,6 +8,7 @@ use App\Models\Registration;
 use App\Models\Siswa;
 use App\Models\GuruPendamping;
 use App\Models\Mitra;
+use App\Models\JadwalPendaftaran;
 
 class RegistrationSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class RegistrationSeeder extends Seeder
         $siswas = Siswa::all();
         $gurus = GuruPendamping::all();
         $mitras = Mitra::all();
+        $jadwalPendaftarans = JadwalPendaftaran::all();
 
         $statuses = ['proses', 'diterima', 'ditolak'];
 
@@ -28,6 +30,7 @@ class RegistrationSeeder extends Seeder
                 'siswa_id' => $siswa->id,
                 'guru_pendamping_id' => $gurus->random()->id,
                 'mitra_id' => $mitras->random()->id,
+                'jadwal_pendaftaran_id' => $jadwalPendaftarans->random()->id,
                 'status' => $statuses[array_rand($statuses)],
                 'tanggal_daftar' => now()->subDays(rand(1, 30)),
             ]);
@@ -39,6 +42,7 @@ class RegistrationSeeder extends Seeder
                 'siswa_id' => $siswas->random()->id,
                 'guru_pendamping_id' => $gurus->random()->id,
                 'mitra_id' => $mitras->random()->id,
+                'jadwal_pendaftaran_id' => $jadwalPendaftarans->random()->id,
                 'status' => $statuses[array_rand($statuses)],
                 'tanggal_daftar' => now()->subDays(rand(1, 60)),
             ]);
