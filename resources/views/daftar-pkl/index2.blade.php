@@ -11,19 +11,19 @@
             <!-- Sidebar -->
             <div class="w-full md:w-64 bg-[#3C5148] rounded-l-2xl p-6">
                 <nav class="space-y-4">
-                    <a href="#" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
+                    <a href="{{ route('daftar-pkl.index') }}" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
                         <span class="w-2 h-2 bg-[#B2C583] rounded-full mr-3"></span>
                         <span class="text-sm">Data Siswa</span>
                     </a>
-                    <a href="#" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
-                        <span class="w-2 h-2 bg-[#B2C583] rounded-full mr-3"></span>
+                    <a href="{{ route('daftar-pkl.index2') }}" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
+                        <span class="w-2 h-2 bg-[#F4F6F4] rounded-full mr-3"></span>
                         <span class="text-sm">Pilihan Tempat PKL</span>
                     </a>
-                    <a href="#" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
+                    <a href="{{ route('daftar-pkl.index3') }}" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
                         <span class="w-2 h-2 bg-[#F4F6F4] rounded-full mr-3"></span>
                         <span class="text-sm">Dokumen Pendukung</span>
                     </a>
-                    <a href="#" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
+                    <a href="{{ route('daftar-pkl.index4') }}" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
                         <span class="w-2 h-2 bg-[#F4F6F4] rounded-full mr-3"></span>
                         <span class="text-sm">Permintaan</span>
                     </a>
@@ -50,9 +50,9 @@
                             required
                         >
                             <option value="" disabled selected>Pilih Perusahaan</option>
-                            <option value="perusahaan1">Perusahaan 1</option>
-                            <option value="perusahaan2">Perusahaan 2</option>
-                            <option value="perusahaan3">Perusahaan 3</option>
+                            @foreach($mitras as $mitra)
+                                <option value="{{ $mitra->id }}">{{ $mitra->name }}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -69,9 +69,9 @@
                             required
                         >
                             <option value="" disabled selected>Pilih Perusahaan</option>
-                            <option value="perusahaan1">Perusahaan 1</option>
-                            <option value="perusahaan2">Perusahaan 2</option>
-                            <option value="perusahaan3">Perusahaan 3</option>
+                            @foreach($mitras as $mitra)
+                                <option value="{{ $mitra->id }}">{{ $mitra->name }}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -84,7 +84,7 @@
                         >
                             Kembali
                         </button>
-                        <a href="{{ route('index3') }}"
+                        <a href="{{ route('daftar-pkl.index3') }}"
                             class="inline-block px-8 py-2.5 bg-[#3C5148] text-white rounded-full hover:bg-[#32463D] transition duration-200 font-medium">
                             Selanjutnya
                         </a>
@@ -94,4 +94,59 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const pilihan1 = document.getElementById('pilihan1');
+        const pilihan2 = document.getElementById('pilihan2');
+
+        // Function untuk disable option yang sudah dipilih di select lain
+        function updateOptions() {
+            const value1 = pilihan1.value;
+            const value2 = pilihan2.value;
+
+            // Reset semua option ke enabled
+            Array.from(pilihan1.options).forEach(option => {
+                option.disabled = false;
+            });
+            Array.from(pilihan2.options).forEach(option => {
+                option.disabled = false;
+            });
+
+            // Disable option di pilihan2 jika sudah dipilih di pilihan1
+            if (value1) {
+                Array.from(pilihan2.options).forEach(option => {
+                    if (option.value === value1 && option.value !== '') {
+                        option.disabled = true;
+                    }
+                });
+            }
+
+            // Disable option di pilihan1 jika sudah dipilih di pilihan2
+            if (value2) {
+                Array.from(pilihan1.options).forEach(option => {
+                    if (option.value === value2 && option.value !== '') {
+                        option.disabled = true;
+                    }
+                });
+            }
+        }
+
+        // Event listener untuk kedua select
+        pilihan1.addEventListener('change', updateOptions);
+        pilihan2.addEventListener('change', updateOptions);
+
+        // Validasi saat form submit
+        const form = pilihan1.closest('form');
+        form.addEventListener('submit', function(e) {
+            if (pilihan1.value && pilihan2.value && pilihan1.value === pilihan2.value) {
+                e.preventDefault();
+                alert('Pilihan 1 dan Pilihan 2 tidak boleh sama!');
+                return false;
+            }
+        });
+    });
+</script>
+@endpush
 @endsection

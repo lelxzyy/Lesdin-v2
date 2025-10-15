@@ -11,19 +11,19 @@
             <!-- Sidebar -->
             <div class="w-full md:w-64 bg-[#3C5148] rounded-l-2xl p-6">
                 <nav class="space-y-4">
-                    <a href="#" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
+                    <a href="{{ route('daftar-pkl.index') }}" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
                         <span class="w-2 h-2 bg-[#B2C583] rounded-full mr-3"></span>
                         <span class="text-sm">Data Siswa</span>
                     </a>
-                    <a href="#" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
-                        <span class="w-2 h-2 bg-[#B2C583] rounded-full mr-3"></span>
+                    <a href="{{ route('daftar-pkl.index2') }}" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
+                        <span class="w-2 h-2 bg-[#F4F6F4] rounded-full mr-3"></span>
                         <span class="text-sm">Pilihan Tempat PKL</span>
                     </a>
-                    <a href="#" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
-                        <span class="w-2 h-2 bg-[#B2C583] rounded-full mr-3"></span>
+                    <a href="{{ route('daftar-pkl.index3') }}" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
+                        <span class="w-2 h-2 bg-[#F4F6F4] rounded-full mr-3"></span>
                         <span class="text-sm">Dokumen Pendukung</span>
                     </a>
-                    <a href="#" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
+                    <a href="{{ route('daftar-pkl.index4') }}" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
                         <span class="w-2 h-2 bg-[#F4F6F4] rounded-full mr-3"></span>
                         <span class="text-sm">Permintaan</span>
                     </a>
@@ -214,7 +214,7 @@
                         >
                             Kembali
                         </button>
-                        <a href="{{ route('index4') }}"
+                        <a href="{{ route('daftar-pkl.index4') }}"
                             class="inline-block px-8 py-2.5 bg-[#3C5148] text-white rounded-full hover:bg-[#32463D] transition duration-200 font-medium">
                             Selanjutnya
                         </a>

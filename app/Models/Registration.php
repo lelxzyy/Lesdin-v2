@@ -15,6 +15,7 @@ class Registration extends Model
         'mitra_id',
         'status',
         'tanggal_daftar',
+        'jadwal_pendaftaran_id',
     ];
 
     // Relasi ke Siswa

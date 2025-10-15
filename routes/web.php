@@ -6,6 +6,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DaftarPklController;
 use App\Http\Controllers\Admin\SiswaController;
+use App\Http\Controllers\Admin\MitraAdminController;
 
 Route::get('/', function () {
     return view('index');
@@ -20,6 +21,14 @@ Route::middleware('auth')->group(function () {
 
     // Daftar PKL
     Route::get('/daftar-pkl', [DaftarPklController::class, 'index'])->name('daftar-pkl.index');
+    Route::post('/daftar-pkl/update-siswa', [DaftarPklController::class, 'updateSiswa'])->name('daftar-pkl.update-siswa');
+    Route::get('/daftar-pkl/step-2', [DaftarPklController::class, 'index2'])->name('daftar-pkl.index2');
+    Route::get('/daftar-pkl/step-3', function () {
+        return view('daftar-pkl.index3');
+    })->name('daftar-pkl.index3');
+    Route::get('/daftar-pkl/step-4', function () {
+        return view('daftar-pkl.index4');
+    })->name('daftar-pkl.index4');
 });
 
 // Mitra (public)
@@ -42,10 +51,11 @@ Route::post  ('/admin/berita',             [BeritaController::class, 'store'])->
 Route::get   ('/admin/berita/{berita}',    [BeritaController::class, 'show'])->name('admin.berita.show');     // opsional
 Route::delete('/admin/berita/{berita}',    [BeritaController::class, 'destroy'])->name('admin.berita.destroy');
 
-    // Perusahaan (sementara masih view statis)
-    Route::get('/admin/perusahaan', function () {
-        return view('admin.perusahaan');
-    })->name('admin.perusahaan');
+    // ===== PERUSAHAAN/MITRA (pakai controller) =====
+Route::get   ('/admin/perusahaan',         [MitraAdminController::class, 'index'])->name('admin.perusahaan');
+Route::get   ('/admin/perusahaan/create',  [MitraAdminController::class, 'create'])->name('admin.perusahaan.create');
+Route::post  ('/admin/perusahaan',         [MitraAdminController::class, 'store'])->name('admin.perusahaan.store');
+Route::delete('/admin/perusahaan/{mitra}', [MitraAdminController::class, 'destroy'])->name('admin.perusahaan.destroy');
 });
 
 // Auth routes (Breeze/Fortify/Jetstream dsb.)
