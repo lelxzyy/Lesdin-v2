@@ -12,11 +12,11 @@
             <div class="w-full md:w-64 bg-[#3C5148] rounded-l-2xl p-6">
                 <nav class="space-y-4">
                     <a href="#" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
-                        <span class="w-2 h-2 bg-[#F4F6F4] rounded-full mr-3"></span>
+                        <span class="w-2 h-2 bg-[#B2C583] rounded-full mr-3"></span>
                         <span class="text-sm">Data Siswa</span>
                     </a>
                     <a href="#" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
-                        <span class="w-2 h-2 bg-[#F4F6F4] rounded-full mr-3"></span>
+                        <span class="w-2 h-2 bg-[#B2C583] rounded-full mr-3"></span>
                         <span class="text-sm">Pilihan Tempat PKL</span>
                     </a>
                     <a href="#" class="flex items-center text-white hover:bg-[#32453D] rounded px-3 py-2 transition">
