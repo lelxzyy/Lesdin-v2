@@ -1,5 +1,6 @@
 {{-- resources/views/layouts/navbar.blade.php --}}
-<nav class="font-poppins fixed top-6 left-0 right-0 mx-auto bg-white rounded-full shadow-xl px-6 sm:px-8 py-3 flex justify-between items-center max-w-[95%] md:max-w-[85%] z-50">
+<div class="fixed top-6 left-0 right-0 z-50 px-[2.5%] md:px-[7.5%]">
+    <nav class="font-poppins bg-white rounded-full shadow-xl px-6 sm:px-8 py-3 flex justify-between items-center w-full max-w-7xl mx-auto">
     {{-- Logo --}}
     <div class="flex items-center space-x-3 flex-shrink-0">
         <img src="{{ asset('images/logo-sekolah.png') }}" alt="Logo Sekolah" class="h-10 sm:h-12 object-contain">
@@ -62,7 +63,7 @@
     </ul>
 
     {{-- Mobile Hamburger --}}
-    <button id="menu-toggle" class="md:hidden p-2 text-[#3C5148] hover:text-[#678E4D] transition-colors relative w-10 h-10 flex-shrink-0 -mr-2">
+    <button id="menu-toggle" class="md:hidden p-2 text-[#3C5148] hover:text-[#678E4D] transition-colors relative w-10 h-10 flex-shrink-0 mr-0">
         {{-- Wrapper biar icon tumpuk pas --}}
         <div class="relative w-7 h-7">
             {{-- Icon Menu --}}
@@ -80,10 +81,11 @@
             </svg>
         </div>
     </button>
-</nav>
+    </nav>
+</div>
 
 {{-- Mobile Menu --}}
-<div id="mobile-menu" class="hidden fixed top-24 left-0 right-0 mx-auto max-w-[95%] sm:max-w-md bg-white rounded-2xl shadow-2xl z-50 md:hidden">
+<div id="mobile-menu" class="hidden fixed top-24 left-[2.5%] right-[2.5%] sm:left-auto sm:right-auto sm:mx-auto sm:max-w-md bg-white rounded-2xl shadow-2xl z-50 md:hidden">
     <ul class="flex flex-col py-6 px-6 space-y-2 text-[#3C5148]">
         <li>
             <a href="{{ url('/') }}" class="block py-3 px-4 hover:bg-gray-50 hover:text-[#678E4D] rounded-lg transition-colors relative {{ request()->is('/') ? 'text-[#678E4D] bg-gray-50' : '' }}">

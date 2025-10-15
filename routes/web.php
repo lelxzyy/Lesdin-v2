@@ -19,6 +19,17 @@ Route::middleware('auth')->group(function () {
 
     // Daftar PKL
     Route::get('/daftar-pkl', [DaftarPklController::class, 'index'])->name('daftar-pkl.index');
+    Route::get('/index2', function () {
+    return view('daftar-pkl.index2');
+})->name('index2');
+    Route::get('/index3', function () {
+    return view('daftar-pkl.index3');
+})->name('index3');
+Route::get('/index4', function () {
+    return view('daftar-pkl.index4');
+})->name('index4');
+
+
 });
 
 // Mitra (public)

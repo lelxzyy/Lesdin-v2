@@ -21,7 +21,7 @@
     {{-- Tambahan CSS per-halaman --}}
     @stack('styles')
 </head>
-<body class="font-poppins antialiased text-gray-800">
+<body class="box-border overflow-x-hidden font-poppins antialiased text-gray-800">
 
     {{-- Navbar --}}
     @include('partials.navbar')
