@@ -51,6 +51,16 @@
                     <span>Dashboard</span>
                 </a>
 
+                {{-- Pendaftaran PKL --}}
+                <a href="{{ route('admin.registrations.index') }}"
+                   class="flex items-center gap-3 px-4 py-2.5 rounded-md transition-all duration-200
+                   {{ request()->routeIs('admin.registrations.*')
+                       ? 'bg-white/20 text-white shadow-inner'
+                       : 'text-gray-200 hover:bg-white/10 hover:text-white' }}">
+                    <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+                    <span>Pendaftaran PKL</span>
+                </a>
+
                 {{-- Daftar Siswa --}}
                 <a href="{{ route('admin.siswa') }}"
                    class="flex items-center gap-3 px-4 py-2.5 rounded-md transition-all duration-200
@@ -102,5 +112,7 @@
     </main>
 
     <script> lucide.createIcons(); </script>
+    
+    @stack('scripts')
 </body>
 </html>

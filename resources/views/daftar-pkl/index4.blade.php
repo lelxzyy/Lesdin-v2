@@ -34,7 +34,29 @@
             <div class="w-full max-w-3xl bg-gray-100 rounded-r-2xl shadow-lg p-8">
                 <h2 class="text-xl font-semibold text-[#2E3C35] mb-6">Persetujuan</h2>
 
-                <form action="#" method="POST" class="space-y-6">
+                @if(session('success'))
+                    <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if(session('error'))
+                    <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                @if($errors->any())
+                    <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                        <ul class="list-disc list-inside">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('daftar-pkl.submit') }}" method="POST" class="space-y-6">
                     @csrf
 
                     <!-- Informasi Text -->
@@ -50,11 +72,12 @@
                             type="checkbox" 
                             id="persetujuan" 
                             name="persetujuan"
+                            value="1"
                             class="mt-1 w-4 h-4 text-[#3C5148] border-[#4A5A55] rounded focus:ring-[#3C5148] focus:ring-2"
                             required
                         >
                         <label for="persetujuan" class="text-sm text-[#2E3C35] cursor-pointer">
-                            Saya menyetujui data yang saya isi sudah benar
+                            Saya menyetujui bahwa data yang saya isi sudah benar dan siap untuk diproses
                         </label>
                     </div>
 
@@ -68,8 +91,7 @@
                             Kembali
                         </button>
                         <button 
-                            type="button"
-                            onclick="showSuccessModal()"
+                            type="submit"
                             class="px-8 py-2.5 bg-[#3C5148] text-white rounded-full hover:bg-[#32463D] transition duration-200 font-medium"
                         >
                             Kirim
@@ -104,7 +126,7 @@
 
             <!-- Close Button (Optional) -->
             <button 
-                onclick="closeSuccessModal()"
+                onclick="window.location.href='{{ route('profile.index') }}'"
                 class="px-8 py-2.5 bg-[#3C5148] text-white rounded-full hover:bg-[#32463D] transition duration-200 font-medium"
             >
                 Tutup
@@ -113,27 +135,31 @@
     </div>
 </div>
 
+@if(session('success'))
 <script>
-function showSuccessModal() {
-    // Validate checkbox first
-    const checkbox = document.getElementById('persetujuan');
-    if (!checkbox.checked) {
-        alert('Mohon centang persetujuan terlebih dahulu');
-        return;
-    }
-    
-    const modal = document.getElementById('successModal');
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
+    // Auto show modal if success message exists
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('successModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    });
+</script>
+@endif
+
+<script>
 function closeSuccessModal() {
     const modal = document.getElementById('successModal');
     modal.classList.add('hidden');
     modal.classList.remove('flex');
-    // Redirect ke halaman mitra
-    window.location.href = "{{ route('mitra.index') }}";
-    // window.location.href = '/';
+    // Redirect ke halaman profile
+    window.location.href = "{{ route('profile.index') }}";
 }
-    // window.location.href = '/';
-}
+
+// Optional: Close modal when clicking outside
+document.getElementById('successModal')?.addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeSuccessModal();
+    }
+});
 </script>
 @endsection
