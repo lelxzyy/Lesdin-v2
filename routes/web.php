@@ -5,8 +5,10 @@ use App\Http\Controllers\MitraController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DaftarPklController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\MitraAdminController;
+use App\Http\Controllers\Admin\RegistrationController;
 
 // Halaman daftar berita publik (opsional)
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
@@ -29,12 +31,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/daftar-pkl', [DaftarPklController::class, 'index'])->name('daftar-pkl.index');
     Route::post('/daftar-pkl/update-siswa', [DaftarPklController::class, 'updateSiswa'])->name('daftar-pkl.update-siswa');
     Route::get('/daftar-pkl/step-2', [DaftarPklController::class, 'index2'])->name('daftar-pkl.index2');
-    Route::get('/daftar-pkl/step-3', function () {
-        return view('daftar-pkl.index3');
-    })->name('daftar-pkl.index3');
-    Route::get('/daftar-pkl/step-4', function () {
-        return view('daftar-pkl.index4');
-    })->name('daftar-pkl.index4');
+    Route::post('/daftar-pkl/update-pilihan', [DaftarPklController::class, 'updatePilihan'])->name('daftar-pkl.update-pilihan');
+    Route::get('/daftar-pkl/step-3', [DaftarPklController::class, 'index3'])->name('daftar-pkl.index3');
+    Route::post('/daftar-pkl/upload-dokumen', [DaftarPklController::class, 'uploadDokumen'])->name('daftar-pkl.upload-dokumen');
+    Route::get('/daftar-pkl/step-4', [DaftarPklController::class, 'index4'])->name('daftar-pkl.index4');
+    Route::post('/daftar-pkl/submit', [DaftarPklController::class, 'submitPendaftaran'])->name('daftar-pkl.submit');
 });
 
 // Mitra (public)
@@ -43,12 +44,24 @@ Route::get('/mitra/{id}', [MitraController::class, 'show'])->name('mitra.show');
 
 // Admin
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin.index');
-    })->name('dashboard');
+    // Dashboard
+    Route::get('/admin', [AdminController::class, 'index'])->name('dashboard');
+
+    // Pendaftaran PKL (Approval)
+    Route::get('/admin/pendaftaran', [RegistrationController::class, 'index'])->name('admin.registrations.index');
+    Route::get('/admin/pendaftaran/{registration}', [RegistrationController::class, 'show'])->name('admin.registrations.show');
+    Route::post('/admin/pendaftaran/{registration}/approve', [RegistrationController::class, 'approve'])->name('admin.registrations.approve');
+    Route::post('/admin/pendaftaran/{registration}/reject', [RegistrationController::class, 'reject'])->name('admin.registrations.reject');
+    Route::post('/admin/pendaftaran/{registration}/complete', [RegistrationController::class, 'complete'])->name('admin.registrations.complete');
 
     // Siswa
     Route::get('/admin/siswa', [SiswaController::class, 'index'])->name('admin.siswa');
+    Route::get('/admin/siswa/create', [SiswaController::class, 'create'])->name('admin.siswa.create');
+    Route::post('/admin/siswa', [SiswaController::class, 'store'])->name('admin.siswa.store');
+    Route::get('/admin/siswa/{siswa}', [SiswaController::class, 'show'])->name('admin.siswa.show');
+    Route::get('/admin/siswa/{siswa}/edit', [SiswaController::class, 'edit'])->name('admin.siswa.edit');
+    Route::put('/admin/siswa/{siswa}', [SiswaController::class, 'update'])->name('admin.siswa.update');
+    Route::delete('/admin/siswa/{siswa}', [SiswaController::class, 'destroy'])->name('admin.siswa.destroy');
 
         // ===== BERITA (pakai controller) =====
     Route::get   ('/admin/berita',             [BeritaController::class, 'index'])->name('admin.berita');
