@@ -11,8 +11,8 @@ use App\Http\Controllers\Admin\MitraAdminController;
 // Halaman daftar berita publik (opsional)
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
 
-// Detail berita publik by slug
-Route::get('/berita/{berita:slug}', [BeritaController::class, 'show'])->name('berita.show');
+// Detail berita publik by id (karena tabel beritas tidak punya kolom slug)
+Route::get('/berita/{berita}', [BeritaController::class, 'show'])->name('berita.show');
 
 Route::get('/', function () {
     return view('index');
@@ -48,20 +48,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
     })->name('dashboard');
 
     // Siswa
-Route::get('/admin/siswa', [SiswaController::class, 'index'])->name('admin.siswa');
+    Route::get('/admin/siswa', [SiswaController::class, 'index'])->name('admin.siswa');
 
-    // ===== BERITA (pakai controller) =====
-Route::get   ('/admin/berita',             [BeritaController::class, 'index'])->name('admin.berita');
-Route::get   ('/admin/berita/create',      [BeritaController::class, 'create'])->name('admin.berita.create'); // <- NEW
-Route::post  ('/admin/berita',             [BeritaController::class, 'store'])->name('admin.berita.store');
-Route::get   ('/admin/berita/{berita}',    [BeritaController::class, 'show'])->name('admin.berita.show');     // opsional
-Route::delete('/admin/berita/{berita}',    [BeritaController::class, 'destroy'])->name('admin.berita.destroy');
+        // ===== BERITA (pakai controller) =====
+    Route::get   ('/admin/berita',             [BeritaController::class, 'index'])->name('admin.berita');
+    Route::get   ('/admin/berita/create',      [BeritaController::class, 'create'])->name('admin.berita.create'); // <- NEW
+    Route::post  ('/admin/berita',             [BeritaController::class, 'store'])->name('admin.berita.store');
+    Route::get   ('/admin/berita/{berita}',    [BeritaController::class, 'show'])->name('admin.berita.show');     // opsional
+    Route::delete('/admin/berita/{berita}',    [BeritaController::class, 'destroy'])->name('admin.berita.destroy');
 
-    // ===== PERUSAHAAN/MITRA (pakai controller) =====
-Route::get   ('/admin/perusahaan',         [MitraAdminController::class, 'index'])->name('admin.perusahaan');
-Route::get   ('/admin/perusahaan/create',  [MitraAdminController::class, 'create'])->name('admin.perusahaan.create');
-Route::post  ('/admin/perusahaan',         [MitraAdminController::class, 'store'])->name('admin.perusahaan.store');
-Route::delete('/admin/perusahaan/{mitra}', [MitraAdminController::class, 'destroy'])->name('admin.perusahaan.destroy');
+        // ===== PERUSAHAAN/MITRA (pakai controller) =====
+    Route::get   ('/admin/perusahaan',         [MitraAdminController::class, 'index'])->name('admin.perusahaan');
+    Route::get   ('/admin/perusahaan/create',  [MitraAdminController::class, 'create'])->name('admin.perusahaan.create');
+    Route::post  ('/admin/perusahaan',         [MitraAdminController::class, 'store'])->name('admin.perusahaan.store');
+    Route::delete('/admin/perusahaan/{mitra}', [MitraAdminController::class, 'destroy'])->name('admin.perusahaan.destroy');
 });
 
 // Auth routes (Breeze/Fortify/Jetstream dsb.)
