@@ -80,6 +80,16 @@
                     <i data-lucide="building" class="w-5 h-5"></i>
                     <span>Daftar Perusahaan</span>
                 </a>
+
+                {{-- Jadwal Pendaftaran --}}
+                <a href="{{ route('admin.jadwal.index') }}"
+                   class="flex items-center gap-3 px-4 py-2.5 rounded-md transition-all duration-200
+                   {{ request()->routeIs('admin.jadwal.*')
+                       ? 'bg-white/20 text-white shadow-inner'
+                       : 'text-gray-200 hover:bg-white/10 hover:text-white' }}">
+                    <i data-lucide="calendar" class="w-5 h-5"></i>
+                    <span>Jadwal Pendaftaran</span>
+                </a>
               
                              {{-- Daftar Berita --}}
                 <a href="{{ route('admin.berita') }}"

@@ -15,6 +15,7 @@ class JadwalPendaftaran extends Model
         'akhir_pendaftaran',
         'mitra_id',
         'tanggal_pengumuman',
+        'is_active',
     ];
 
     protected $casts = [

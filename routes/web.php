@@ -9,12 +9,13 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\MitraAdminController;
 use App\Http\Controllers\Admin\RegistrationController;
+use App\Http\Controllers\Admin\JadwalPendaftaranController;
 
 // Halaman daftar berita publik (opsional)
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
 
 // Detail berita publik by id (karena tabel beritas tidak punya kolom slug)
-Route::get('/berita/{berita}', [BeritaController::class, 'show'])->name('berita.show');
+Route::get('/berita/{berita}', [BeritaController::class, 'publicShow'])->name('berita.show');
 
 Route::get('/', function () {
     return view('index');
@@ -62,6 +63,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/siswa/{siswa}/edit', [SiswaController::class, 'edit'])->name('admin.siswa.edit');
     Route::put('/admin/siswa/{siswa}', [SiswaController::class, 'update'])->name('admin.siswa.update');
     Route::delete('/admin/siswa/{siswa}', [SiswaController::class, 'destroy'])->name('admin.siswa.destroy');
+
+    // Jadwal Pendaftaran
+    Route::get('/admin/jadwal', [JadwalPendaftaranController::class, 'index'])->name('admin.jadwal.index');
+    Route::get('/admin/jadwal/create', [JadwalPendaftaranController::class, 'create'])->name('admin.jadwal.create');
+    Route::post('/admin/jadwal', [JadwalPendaftaranController::class, 'store'])->name('admin.jadwal.store');
+    Route::get('/admin/jadwal/{jadwal}/edit', [JadwalPendaftaranController::class, 'edit'])->name('admin.jadwal.edit');
+    Route::put('/admin/jadwal/{jadwal}', [JadwalPendaftaranController::class, 'update'])->name('admin.jadwal.update');
+    Route::post('/admin/jadwal/{jadwal}/toggle', [JadwalPendaftaranController::class, 'toggleActive'])->name('admin.jadwal.toggle');
+    Route::delete('/admin/jadwal/{jadwal}', [JadwalPendaftaranController::class, 'destroy'])->name('admin.jadwal.destroy');
 
         // ===== BERITA (pakai controller) =====
     Route::get   ('/admin/berita',             [BeritaController::class, 'index'])->name('admin.berita');

@@ -22,7 +22,10 @@ class DaftarPklController extends Controller
         // Ambil data siswa berdasarkan user yang login
         $siswa = Siswa::where('user_id', Auth::id())->with('jurusan')->first();
         
-        return view('daftar-pkl.index', compact('siswa'));
+        // Cek jadwal pendaftaran
+        $jadwalData = $this->cekJadwalPendaftaran();
+        
+        return view('daftar-pkl.index', array_merge(compact('siswa'), $jadwalData));
     }
 
     /**
@@ -59,6 +62,9 @@ class DaftarPklController extends Controller
         // Ambil data siswa
         $siswa = Siswa::where('user_id', Auth::id())->first();
         
+        // Cek jadwal pendaftaran
+        $jadwalData = $this->cekJadwalPendaftaran();
+        
         // Cek apakah siswa sudah punya registration
         $registration = Registration::where('siswa_id', $siswa->id)->first();
         
@@ -66,7 +72,7 @@ class DaftarPklController extends Controller
         $pilihan1 = $registration->mitra_1_id ?? null;
         $pilihan2 = $registration->mitra_2_id ?? null;
         
-        return view('daftar-pkl.index2', compact('mitras', 'pilihan1', 'pilihan2'));
+        return view('daftar-pkl.index2', array_merge(compact('mitras', 'pilihan1', 'pilihan2'), $jadwalData));
     }
 
     /**
@@ -117,7 +123,10 @@ class DaftarPklController extends Controller
         $siswa = Siswa::where('user_id', Auth::id())->first();
         $dokumen = DokumenPendukung::where('siswa_id', $siswa->id)->first();
         
-        return view('daftar-pkl.index3', compact('dokumen'));
+        // Cek jadwal pendaftaran
+        $jadwalData = $this->cekJadwalPendaftaran();
+        
+        return view('daftar-pkl.index3', array_merge(compact('dokumen'), $jadwalData));
     }
 
     /**
@@ -159,6 +168,8 @@ class DaftarPklController extends Controller
      */
     public function index4()
     {
+        $jadwalData = $this->cekJadwalPendaftaran();
+        
         $siswa = Siswa::where('user_id', Auth::id())->first();
         
         // Cek apakah sudah ada registration
@@ -167,7 +178,7 @@ class DaftarPklController extends Controller
         // Cek apakah dokumen sudah lengkap
         $dokumen = DokumenPendukung::where('siswa_id', $siswa->id)->first();
         
-        return view('daftar-pkl.index4', compact('siswa', 'registration', 'dokumen'));
+        return view('daftar-pkl.index4', array_merge(compact('siswa', 'registration', 'dokumen'), $jadwalData));
     }
 
     /**
@@ -271,5 +282,33 @@ class DaftarPklController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Helper: Cek status pendaftaran
+     */
+    private function cekJadwalPendaftaran()
+    {
+        $jadwalAktif = JadwalPendaftaran::where('is_active', true)->first();
+        $isPendaftaranBuka = false;
+        $pesanPendaftaran = null;
+        
+        if (!$jadwalAktif) {
+            $pesanPendaftaran = 'Belum ada jadwal pendaftaran yang dibuka.';
+        } else {
+            $now = now();
+            $mulai = $jadwalAktif->mulai_pendaftaran;
+            $akhir = $jadwalAktif->akhir_pendaftaran;
+            
+            if ($now->lt($mulai)) {
+                $pesanPendaftaran = 'Pendaftaran akan dibuka pada ' . $mulai->format('d M Y');
+            } elseif ($now->gt($akhir)) {
+                $pesanPendaftaran = 'Pendaftaran telah ditutup pada ' . $akhir->format('d M Y');
+            } else {
+                $isPendaftaranBuka = true;
+            }
+        }
+        
+        return compact('jadwalAktif', 'isPendaftaranBuka', 'pesanPendaftaran');
     }
 }
