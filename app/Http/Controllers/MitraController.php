@@ -39,9 +39,10 @@ class MitraController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $mitra = Mitra::findOrFail($id);
+        return view('mitra.show', compact('mitra'));
     }
 
     /**
