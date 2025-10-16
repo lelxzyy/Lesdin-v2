@@ -41,8 +41,8 @@ class MitraController extends Controller
      */
     public function show($id)
     {
-        $mitra = Mitra::findOrFail($id);
-        return view('mitra.show', compact('mitra'));
+        $mitra = Mitra::with('jurusan')->findOrFail($id); // ambil data mitra
+        return view('mitra.mitra', compact('mitra'));
     }
 
     /**
