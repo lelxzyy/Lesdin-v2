@@ -121,10 +121,7 @@
             </a>
           </div>
         @endforeach
-      </div>
-
-      {{-- Pagination --}}
-      <div class="swiper-pagination mt-4"></div>
+  
     </div>
   </div>
 </section>
