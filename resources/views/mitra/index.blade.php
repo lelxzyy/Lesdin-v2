@@ -150,7 +150,7 @@
       >
         {{ $jurusan->kode_jurusan }}
       </button>
-    @endforeach
+     @endforeach
   </div>
 </div>
 
